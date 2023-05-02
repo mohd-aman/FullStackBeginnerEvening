@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to CSS</title>
+    
+    <!-- link tag -> to establish the connection between css and html file -->
+    <!-- rel attribute -> relationship between the file -->
+    <!-- external way -->
+    <link rel="stylesheet" href="./style.css">
+   
+
+    <!-- internal way -->
+    <style>
+        /* to select an id put # followed by id name  */
+        #the-one{
+            color: seagreen;
+            background-color: chartreuse;
+        }
+        
+        /* to select a class put . followed by class name */
+        .one{
+            color:navajowhite
+        }
+
+        p{
+            color: brown;
+            background-color: grey;
+        }
+
+        h1{
+            color: deeppink;
+            background-color: cornflowerblue;
+        }
+
+        a{
+            color: darkcyan;
+        }
+
+    </style>
+
+    
+
+</head>
+<body>
+    <h1>I am a heading 1</h1>
+    <p>I am a p</p>
+    <a style="color:tomato" href="#">I am link</a>
+    <h1>I am another heading 2</h1>
+
+    <h2 class="one">I am heading 2</h2>
+    <p class="one">I am a para</p>
+
+    <p id="the-one">I am a p having an id</p>
+
+</body>
+</html>
