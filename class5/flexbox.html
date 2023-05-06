@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBox</title>
+    <style>
+        
+
+        .container{
+            height: 500px;
+            background-color: grey;
+            display: flex;
+            /* interchages the axis  */
+            /* flex-direction: column;   */
+            /* by default it works along x axis  */
+            /* justify-content: space-evenly; */
+            /* by default it work along y axis  */
+            /* align-items: center; */
+            /* flex-wrap: wrap; */
+            gap:10px;
+        }
+
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: yellow;
+            border: 5px solid whitesmoke;
+        }
+        /* .one{
+            flex-grow: 1;
+            background-color: coral;
+        } */
+        .two{
+            flex-shrink: 2;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box one"></div>
+        <div class="box two"></div>
+        <div class="box three"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+</html>
