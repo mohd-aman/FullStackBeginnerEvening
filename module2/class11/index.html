@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="the-two" class="two">I am heading</h1>
+    <div>
+        <p>I am child of div</p>
+        <p>I am another child of div</p>
+    </div>
+    <h2>I am heading 2</h2>
+    <h2 class="one">I am second  heading 2</h2>
+    <h2 id="the-one">I am third  heading 2</h2>
+    
+
+    <script>
+        //any function associated with object is known as method.
+        // console.log(document);
+        //read
+
+        let h2Element = document.querySelector(".one");
+        // let allh2Element = document.querySelectorAll("h2");
+        // let h2WithID = document.querySelector("#the-one");
+        // let h1Element = document.getElementById("the-two");
+        // let h1Element = document.getElementsByClassName("two");
+        // console.log(h1Element);
+        // console.log(h2WithID);
+        // console.log(allh2Element);
+        // console.log(h2Element.innerText) // will show the text in h2 element
+
+        // let div = document.querySelector("div");
+        // console.log(div.innerHTML); // give inner html 
+        // console.log(div.innerText); // gives only text
+
+        //create
+        // let h3Element = document.createElement("h3");
+        // h3Element.innerText = "I am heading 3"
+        // console.log(h3Element);
+        // let body = document.querySelector("body");
+        // body.appendChild(h3Element);
+
+        //update
+        // let h1Element = document.querySelector("h1");
+        // console.log(h1Element);
+        // h1Element.innerText = "I am update heading with DOM manipulation";
+
+        //delete
+        // let h2Second = document.querySelector(".one");
+        // h2Second.remove();
+    </script>
+</body>
+</html>
