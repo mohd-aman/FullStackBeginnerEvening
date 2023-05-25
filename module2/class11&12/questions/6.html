@@ -109,7 +109,33 @@
     <script>
       // Q Make the filter work
 
-     
+      //hide a movie
+      // let movie = document.querySelector(".movies");
+      // movie.style.display = "none";
+
+
+      let allMovies = document.querySelectorAll('.movies');
+      let select = document.querySelector("select");
+      
+      select.addEventListener("change",function(e){
+        // console.log(e);
+        let selectedCategory = e.target.value;
+        // console.log(selectedCategory);
+        for(let i=0;i<allMovies.length;i++){
+          if(selectedCategory == "none"){
+            allMovies[i].style.display = "block";
+          }else{
+            let p = allMovies[i].querySelector("p");
+            let movieCategory = p.getAttribute("data-category");
+            // console.log(movieCategory);
+            if(selectedCategory == movieCategory){
+              allMovies[i].style.display = "block";
+            }else{
+              allMovies[i].style.display = "none";
+            }
+          }
+        }
+      })
     </script>
   </body>
 </html>

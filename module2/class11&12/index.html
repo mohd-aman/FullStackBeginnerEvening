@@ -51,6 +51,32 @@
         //delete
         // let h2Second = document.querySelector(".one");
         // h2Second.remove();
+
+        //create element with attribute
+        let h6 = document.createElement("h6");
+        h6.innerText = "I am heading 6";
+        //set attribute first parameter is what attribute you want to set and second value of it.
+        h6.setAttribute("class","one");
+        h6.setAttribute("id","the-one");
+        h6.setAttribute("custom-attr","random");
+        // h6.setAttribute("class","two three four five"); // it will over ride;
+        h6.classList.add("two");
+        //to get value of any attribute we use getAttribute
+        let valueOfId = h6.getAttribute("id");
+        console.log(h6);
+        console.log(valueOfId);
+
+        //check if class is there
+        let h1 = document.querySelector("h1");
+        let valueOfClass = h1.getAttribute("class");
+        console.log(valueOfClass);
+        if(valueOfClass == "two"){
+            console.log("two is present");
+        }
+        
+        //another way for doing the same thing
+       let flag = h1.classList.contains("two");
+       console.log(flag)
     </script>
 </body>
 </html>
