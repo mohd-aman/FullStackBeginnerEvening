@@ -13,6 +13,7 @@ form.addEventListener("submit",function(e){
     target = searchField.value;
     console.log(target);
     fetchData(target);
+
 })
 
 
@@ -32,6 +33,7 @@ async function fetchData(target){
         updateDOM(currentTemp,locationName,localTime,conditionEmoji,currentCondition)
     }
     catch(error){
+        alert("Please put a valid Location");
         console.log(error);
     }
 }
