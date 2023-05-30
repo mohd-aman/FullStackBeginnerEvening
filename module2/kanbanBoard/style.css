@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.toolbox-cont{
+    height: 5rem;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+.toolbox-priority-cont{
+    height: 3rem;
+    width: 18rem;
+    background-color: grey;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.action-btn-cont{
+    height: 3rem;
+    width: 10rem;
+    background-color:grey;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.color{
+    height: 1.5rem;
+    width: 3rem;
+}
+
+.red{
+    background-color: red;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green;
+}
+
+.black{
+    background-color: black;
+}
+
+.add-btn,.remove-btn{
+    font-size: 1.25rem
+}
