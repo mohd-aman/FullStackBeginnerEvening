@@ -31,8 +31,7 @@ body{
     margin-left: 5rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    
+    justify-content: space-around;   
 }
 
 .color{
@@ -58,4 +57,36 @@ body{
 
 .add-btn,.remove-btn{
     font-size: 1.25rem
+}
+
+.modal-cont{
+    background-color: lightgray;
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+}
+
+.textarea-cont{
+    width: 75%;
+    height: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+    background-color: antiquewhite;
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+.priority-color-cont{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.priority-color{
+    height: 3rem;
+    width: 5rem;
 }
