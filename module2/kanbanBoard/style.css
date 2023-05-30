@@ -90,3 +90,32 @@ body{
     height: 3rem;
     width: 5rem;
 }
+
+.main-cont{
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.ticket-cont{
+    background-color: aqua;
+    width: 15rem;
+    height: 10rem;
+}
+
+.ticket-color{
+    height: 1rem;
+}
+
+.ticket-id{
+    height: 1.5rem;
+    font-weight: 600;
+}
+
+.task-area{
+    height: 7.5rem;
+    padding:5px;
+    font-size: 1.25rem;
+}
