@@ -63,7 +63,10 @@ body{
     background-color: lightgray;
     height: 50vh;
     width: 50vw;
-    display: flex;
+    display: none;
+    position: absolute;
+    left: 25vw;
+    top: 25vh;
 }
 
 .textarea-cont{
@@ -96,7 +99,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .ticket-cont{
