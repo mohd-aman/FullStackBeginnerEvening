@@ -3,8 +3,10 @@ let modal = document.querySelector(".modal-cont");
 let allPriorityColors = document.querySelectorAll(".priority-color");
 let textArea = document.querySelector(".textarea-cont");
 let mainCont = document.querySelector(".main-cont");
+let removeBtn = document.querySelector(".remove-btn");
 let modalPriorityColor = "black";
 let addModal = true;
+let removeFlag = false;
 
 var uid = new ShortUniqueId();
 
@@ -15,6 +17,15 @@ addBtn.addEventListener("click",function(){
         modal.style.display = "none";
     }
     addModal = !addModal;
+})
+
+removeBtn.addEventListener("click",function(){
+    if(removeFlag){
+        removeBtn.style.color = "black"
+    }else{
+        removeBtn.style.color = "red";
+    }
+    removeFlag = !removeFlag;
 })
 
 
@@ -58,4 +69,10 @@ function createTicket(task){
                             <div class="task-area">${task}</div>`
     // console.log(ticketCont);
     mainCont.appendChild(ticketCont)
+
+    //handle delete
+    ticketCont.addEventListener("click",function(){
+        if(removeFlag)
+            ticketCont.remove();
+    })
 }
