@@ -1,3 +1,11 @@
+:root{
+    --ligthBackground: #F9F5EB;
+    --background:#E4DCCF;
+    --red:#EA5455;
+    --blue:#002B5B;
+    --green:#245953;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -5,19 +13,23 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: var(--background);
 }
 
 .toolbox-cont{
     height: 5rem;
-    background-color: black;
+    background-color: var(--blue);
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw;
 }
 
 .toolbox-priority-cont{
     height: 3rem;
     width: 18rem;
-    background-color: grey;
+    background-color:var(--ligthBackground);
     margin-left: 5rem;
     display: flex;
     align-items: center;
@@ -27,7 +39,7 @@ body{
 .action-btn-cont{
     height: 3rem;
     width: 10rem;
-    background-color:grey;
+    background-color:var(--ligthBackground);
     margin-left: 5rem;
     display: flex;
     align-items: center;
@@ -40,15 +52,15 @@ body{
 }
 
 .red{
-    background-color: red;
+    background-color: var(--red);
 }
 
 .blue{
-    background-color: blue;
+    background-color: var(--blue);
 }
 
 .green{
-    background-color: green;
+    background-color: var(--green);
 }
 
 .black{
@@ -60,13 +72,13 @@ body{
 }
 
 .modal-cont{
-    background-color: lightgray;
     height: 50vh;
     width: 50vw;
     display: none;
     position: absolute;
     left: 25vw;
     top: 25vh;
+    background-color: var(--ligthBackground);
 }
 
 .textarea-cont{
@@ -75,9 +87,10 @@ body{
     outline: none;
     border: none;
     resize: none;
-    background-color: antiquewhite;
+    background-color: var(--ligthBackground);
     font-size: 2rem;
     padding: 2rem;
+    border-right: 2px solid var(--blue);
 }
 
 .priority-color-cont{
@@ -100,10 +113,11 @@ body{
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: space-evenly;
+    margin-top: 7rem;
 }
 
 .ticket-cont{
-    background-color: aqua;
+    background-color: var(--ligthBackground);
     width: 15rem;
     height: 10rem;
 }
@@ -115,7 +129,9 @@ body{
 .ticket-id{
     font-weight: 600;
     font-size:1rem;
-    color: grey;
+    color: var(--blue);
+    padding-left: 6px;
+    margin: 1px;
 }
 
 .task-area{
