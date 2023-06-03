@@ -4,12 +4,42 @@ let allPriorityColors = document.querySelectorAll(".priority-color");
 let textArea = document.querySelector(".textarea-cont");
 let mainCont = document.querySelector(".main-cont");
 let removeBtn = document.querySelector(".remove-btn");
+let priorityFilters = document.querySelectorAll(".color");
+
 let color = ["red","blue","green","black"];
 let modalPriorityColor = "black";
 let addModal = true;
 let removeFlag = false;
 
 var uid = new ShortUniqueId();
+
+let ticketArr = [];
+
+//filtering the task
+for(let i=0;i<priorityFilters.length;i++){
+priorityFilters[i].addEventListener("click",function(){
+    console.log("clicked");
+    let allTicketColors = document.querySelectorAll(".ticket-color");
+    // console.log(allTicketColors)
+    let selectedColor = priorityFilters[i].classList[1];
+    for(let j=0;j<allTicketColors.length;j++){
+        let currentTicketColor = allTicketColors[j].classList[1];
+        // console.log(currentTicketColor);
+        if(selectedColor == currentTicketColor){
+            allTicketColors[j].parentElement.style.display = "block"
+        }else{
+            allTicketColors[j].parentElement.style.display = "none";
+        }
+    }
+})
+
+priorityFilters[i].addEventListener("dblclick",function(){
+    let allTicketColors = document.querySelectorAll(".ticket-color");
+    for(let j=0;j<allTicketColors.length;j++){
+        allTicketColors[j].parentElement.style.display = "block"
+    }
+})
+}
 
 addBtn.addEventListener("click",function(){
     if(addModal){
@@ -48,14 +78,14 @@ textArea.addEventListener("keydown",function(e){
     if(e.key == "Enter"){
         let task = textArea.value;
         // console.log(task)
-        createTicket(task);
+        createTicket(task,modalPriorityColor);
         textArea.value = "";
         modal.style.display = "none";
         addModal = !addModal
     }
 })
 
-function createTicket(task){
+function createTicket(task,modalPriorityColor,ticketId){
     if(task == ""){
         return
     }
@@ -66,24 +96,31 @@ function createTicket(task){
 //     <div class="task-area">Some Task</div>
 //      <div class="lock-unlock"><i class="fa-solid fa-lock"></i></div>
 // </div>
- 
+    let id;
+    if(ticketId == undefined){
+        id = uid();
+    }else{
+        id = ticketId;
+    }
     let ticketCont = document.createElement("div");
     ticketCont.setAttribute("class","ticket-cont");
     ticketCont.innerHTML = `<div class="ticket-color ${modalPriorityColor}"></div>
-                            <div class="ticket-id">#${uid()}</div>
+                            <div class="ticket-id">#${id}</div>
                             <div class="task-area">${task}</div>
                             <div class="lock-unlock"><i class="fa-solid fa-lock"></i></div>`
     // console.log(ticketCont);
+    ticketArr.push({color:modalPriorityColor,id:id,task:task});
+    updateLocalStorage();
+    console.log(ticketArr)
     mainCont.appendChild(ticketCont)
-    
-   handleLockUnlock(ticketCont);
+   handleLockUnlock(ticketCont,id);
    handleDelete(ticketCont);
-   handlePriority(ticketCont);
+   handlePriority(ticketCont,id);
   
 
 }
 
-function handlePriority(ticketCont){
+function handlePriority(ticketCont,id){
      //handle change of priority color;
    let ticketColor = ticketCont.querySelector(".ticket-color");
    ticketColor.addEventListener("click",function(){
@@ -106,11 +143,16 @@ function handlePriority(ticketCont){
         let nextColor = color[nextColorIndex];
         ticketColor.classList.remove(currentColor);
         ticketColor.classList.add(nextColor);
+        let ticketIdx = getTicketIdx(id);
+        ticketArr[ticketIdx].color = nextColor;
+        updateLocalStorage();
+        console.log(ticketArr)
    })
+
 }
 
 
-function handleLockUnlock(ticketCont){
+function handleLockUnlock(ticketCont,id){
      //handle lock unlock
      let lockUnlockBtn = ticketCont.querySelector(".lock-unlock i");
      let taskArea = ticketCont.querySelector(".task-area");
@@ -125,6 +167,10 @@ function handleLockUnlock(ticketCont){
              lockUnlockBtn.classList.add("fa-lock");
              taskArea.setAttribute("contenteditable","false")
          }
+         let ticketIdx = getTicketIdx(id);
+         ticketArr[ticketIdx].task = taskArea.textContent;
+         updateLocalStorage();
+         console.log(ticketArr)
      })
 }
 
@@ -134,4 +180,18 @@ function handleDelete(ticketCont){
         if(removeFlag)
             ticketCont.remove();
     })
+}
+
+
+function getTicketIdx(id){
+    for(let i=0;i<ticketArr.length;i++){
+        if(ticketArr[i].id == id){
+            return i;
+        }
+    }
+}
+
+function updateLocalStorage(){
+    let stringifyArr = JSON.stringify(ticketArr);
+    localStorage.setItem("tickets",stringifyArr);
 }
