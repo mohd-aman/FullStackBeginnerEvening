@@ -122,6 +122,7 @@ body{
     background-color: var(--ligthBackground);
     width: 15rem;
     height: 10rem;
+    position: relative;
 }
 
 .ticket-color{
@@ -131,18 +132,31 @@ body{
 .ticket-id{
     font-weight: 600;
     font-size:1rem;
+    margin-top: 2px;
     color: var(--blue);
     padding-left: 5px;
-    margin: 2px;
     font-size: 0.75rem;
 }
 
 .task-area{
     height: 7.5rem;
-    padding:4px;
     font-size: 1.25rem;
+    overflow: auto;
+    padding: 0.5rem;
+    word-break: break-all;
+    outline: none;
+    
 }
 
 .active{
     border: 5px solid yellow;
+}
+
+.lock-unlock{
+    color: var(--blue);
+    font-size: 1.25rem;
+
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
 }
