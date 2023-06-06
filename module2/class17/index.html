@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 2px solid black;
+        }
+
+        .grandparent{
+            height: 500px;
+            width: 500px;
+            background-color: grey;
+            display: flex;
+        }
+        .parent{
+            height: 300px;
+            width: 300px;
+            background-color: thistle;
+            display: flex;
+            margin: auto;
+        }
+        .child{
+            height: 100px;
+            width: 100px;
+            background-color: burlywood;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <div class="child">
+    
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        let grandParent = document.querySelector(".grandparent");
+        let parent = document.querySelector(".parent");
+        let child = document.querySelector(".child");
+
+        grandParent.addEventListener("click",function(){
+            console.log("Grand parent has been clicked");
+        })
+
+        parent.addEventListener("click",function(e){
+            // console.log("Target", e.target); // returns where event happens
+            // console.log("Current Target", e.currentTarget); // return where event was attached
+           
+            // e.stopPropagation();
+            console.log("parent has been clicked");
+            console.log(e.eventPhase);
+        },true)
+
+        child.addEventListener("click",function(e){
+            e.stopPropagation(); // it stops the propagation of event.
+            console.log("Child has been clicked");
+            console.log(e.eventPhase);
+        })
+
+        // grandParent.addEventListener("click",function(){
+        //     console.log("Another Grand parent Event")
+        // })
+
+        // parent.addEventListener("click",function(e){
+        //     console.log("Another Parent Event");
+        //     console.log(e.eventPhase);
+        // })
+
+        // child.addEventListener("click",function(e){
+        //     console.log("Another child event");
+        //     console.log(e.eventPhase);
+        // })
+
+
+    </script>
+</body>
+</html>
