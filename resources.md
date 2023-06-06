@@ -8,3 +8,5 @@
 ## Grid -> https://css-tricks.com/snippets/css/complete-guide-grid/
 ## Grid Garden -> https://cssgridgarden.com/
 ## Specificity Calculator -> https://specificity.keegan.st/
+
+## Dom resources mini project/ machine coding -> https://www.youtube.com/watch?v=DQP53RgTWMA&list=PL05sYGJyIXMoQ7-KUnUwQiLaijCAAN9TP&index=17
