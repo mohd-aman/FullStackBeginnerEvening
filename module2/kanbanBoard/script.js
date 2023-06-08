@@ -6,6 +6,8 @@ let mainCont = document.querySelector(".main-cont");
 let removeBtn = document.querySelector(".remove-btn");
 let priorityFilters = document.querySelectorAll(".color");
 
+let upperDiv = document.querySelector(".toolbox-cont");
+
 let color = ["red","blue","green","black"];
 let modalPriorityColor = "black";
 let addModal = true;
@@ -19,7 +21,7 @@ if(localStorage.getItem("tickets")){
     let str = localStorage.getItem("tickets");
     // console.log(str);
     let arr = JSON.parse(str);
-    console.log(arr);
+    // console.log(arr);
     ticketArr = arr;
     for(let i=0;i<ticketArr.length;i++){
         let ticket = ticketArr[i];
@@ -27,24 +29,57 @@ if(localStorage.getItem("tickets")){
     }
 }
 
+upperDiv.addEventListener("click",function(e){
+    console.log(e.target);
+    //handling plus button
+    if(e.target.classList.contains("fa-plus")){
+        if(addModal){
+            modal.style.display = "flex";
+        }else{
+            modal.style.display = "none";
+        }
+        addModal = !addModal;
+    }else if(e.target.classList.contains("fa-trash")){
+        console.log("Delete");
+        if(removeFlag){
+            e.target.style.color = "black"
+        }else{
+            e.target.style.color = "red";
+        }
+        removeFlag = !removeFlag;
+    }else if(e.target.classList.contains("color")){
+        let allTicketColors = document.querySelectorAll(".ticket-color");
+    // console.log(allTicketColors)
+        let selectedColor = e.target.classList[1];
+        for(let j=0;j<allTicketColors.length;j++){
+            let currentTicketColor = allTicketColors[j].classList[1];
+        // console.log(currentTicketColor);
+            if(selectedColor == currentTicketColor){
+                allTicketColors[j].parentElement.style.display = "block"
+            }else{
+                allTicketColors[j].parentElement.style.display = "none";
+            }
+    }
+    }
+})
 
 //filtering the task
 for(let i=0;i<priorityFilters.length;i++){
-priorityFilters[i].addEventListener("click",function(){
-    console.log("clicked");
-    let allTicketColors = document.querySelectorAll(".ticket-color");
-    // console.log(allTicketColors)
-    let selectedColor = priorityFilters[i].classList[1];
-    for(let j=0;j<allTicketColors.length;j++){
-        let currentTicketColor = allTicketColors[j].classList[1];
-        // console.log(currentTicketColor);
-        if(selectedColor == currentTicketColor){
-            allTicketColors[j].parentElement.style.display = "block"
-        }else{
-            allTicketColors[j].parentElement.style.display = "none";
-        }
-    }
-})
+// priorityFilters[i].addEventListener("click",function(){
+//     console.log("clicked");
+//     let allTicketColors = document.querySelectorAll(".ticket-color");
+//     // console.log(allTicketColors)
+//     let selectedColor = priorityFilters[i].classList[1];
+//     for(let j=0;j<allTicketColors.length;j++){
+//         let currentTicketColor = allTicketColors[j].classList[1];
+//         // console.log(currentTicketColor);
+//         if(selectedColor == currentTicketColor){
+//             allTicketColors[j].parentElement.style.display = "block"
+//         }else{
+//             allTicketColors[j].parentElement.style.display = "none";
+//         }
+//     }
+// })
 
 priorityFilters[i].addEventListener("dblclick",function(){
     let allTicketColors = document.querySelectorAll(".ticket-color");
@@ -54,23 +89,23 @@ priorityFilters[i].addEventListener("dblclick",function(){
 })
 }
 
-addBtn.addEventListener("click",function(){
-    if(addModal){
-        modal.style.display = "flex";
-    }else{
-        modal.style.display = "none";
-    }
-    addModal = !addModal;
-})
+// addBtn.addEventListener("click",function(){
+//     if(addModal){
+//         modal.style.display = "flex";
+//     }else{
+//         modal.style.display = "none";
+//     }
+//     addModal = !addModal;
+// })
 
-removeBtn.addEventListener("click",function(){
-    if(removeFlag){
-        removeBtn.style.color = "black"
-    }else{
-        removeBtn.style.color = "red";
-    }
-    removeFlag = !removeFlag;
-})
+// removeBtn.addEventListener("click",function(){
+//     if(removeFlag){
+//         removeBtn.style.color = "black"
+//     }else{
+//         removeBtn.style.color = "red";
+//     }
+//     removeFlag = !removeFlag;
+// })
 
 
 for(let i=0;i<allPriorityColors.length;i++){
@@ -126,7 +161,7 @@ function createTicket(task,modalPriorityColor,ticketId){
         ticketArr.push({color:modalPriorityColor,id:id,task:task});
         updateLocalStorage();
     }
-    console.log(ticketArr)
+    // console.log(ticketArr)
     mainCont.appendChild(ticketCont)
    handleLockUnlock(ticketCont,id);
    handleDelete(ticketCont,id);
