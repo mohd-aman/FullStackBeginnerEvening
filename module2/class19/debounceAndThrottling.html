@@ -34,11 +34,10 @@
                 if(flag){
                     cb()
                     flag = false;
+                    setTimeout(function(){
+                        flag = true;
+                    },delay)
                 }
-
-                setTimeout(function(){
-                    flag = true;
-                },delay)
             }
         }
 
