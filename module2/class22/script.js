@@ -15,12 +15,12 @@
 // car1.getDetail();
 // car2.getDetail();
 
-
 let obj = {
     name:"Sai",
     age:"Don't know",
-    getDetail:function(batch){
-        this.batch = batch;
+    getDetail:function(batch1,batch2,batch3){
+        console.log(batch1, batch2,batch3);
+        this.batch = batch1;
         console.log(this);
         console.log(`Name is ${this.name} and age is ${this.age}`)
     }
@@ -53,7 +53,41 @@ let obj3 = {
 
 // obj.getDetail.call(anotherObj) // now 'this' will point to anotherObj
 
+// let batches = ["Aug Batch","Sep Batch","Oct Batch"];
 
-obj.getDetail("Beginner Full Stack");
+// obj.getDetail("Beginner Full Stack");
 
-obj.getDetail.call(obj3, "July Full Stack Beginner");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+
+// obj.getDetail.apply(obj3,batches)
+
+// function chooseSubject(){
+//     console.log(this);
+//     return ['June Batch',"August Batch","November"];
+// }
+
+
+// chooseSubject.call(anotherObj);
+
+
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+// obj.getDetail.call(obj3,"July Full Stack","Sep Batch Intermediate","Oct Advance");
+
+// getDetail();
+
+//bind method
+// console.log(obj.getDetail.bind(obj3));
+
+let getDetailBoundedToObj3 = obj.getDetail.bind(obj3);
+getDetailBoundedToObj3("Front End");
+
+getDetailBoundedToObj3("Front End");
+
+getDetailBoundedToObj3("DSA")
+
+getDetailBoundedToObj3("Node")
