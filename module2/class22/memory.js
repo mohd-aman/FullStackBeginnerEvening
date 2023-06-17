@@ -71,3 +71,40 @@ let deepCopiedObj = JSON.parse(JSON.stringify(obj1));
 deepCopiedObj.address.city = "London";
 console.log(obj1)
 console.log(deepCopiedObj)
+
+
+
+//Questions for practice
+
+let obj = {
+    name:"Adam",
+    friends:["Alex","Tim","Carl"],
+    address:{
+        city:"Delhi",
+        pincode:234540,
+        bornPlace:{
+            village:"No idea",
+            pincode:353530
+        }
+    }
+}
+
+let obj5 = obj;
+
+let obj7 = {...obj};
+
+let obj8 = JSON.parse(JSON.stringify(obj));
+
+obj8.friends = ["No one"]
+obj8.address.bornPlace.village = "don't know"
+
+obj7.address.city = "LA"
+obj7.name = "Alex"
+
+obj5.name = "Hales";
+obj5.address.city = "New York"
+
+console.log(obj);
+console.log(obj5)
+console.log(obj7)
+console.log(obj8);
