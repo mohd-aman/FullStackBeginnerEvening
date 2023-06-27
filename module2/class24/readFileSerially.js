@@ -9,7 +9,5 @@ f1Promise.then(function(data){
 }).then(function(data){
     console.log("Data : "+data);
     return fs.promises.readFile("f3.txt");
-}).then(function(data){
-    console.log("Data "+data )
 })
 
