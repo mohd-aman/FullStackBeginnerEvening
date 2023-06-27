@@ -10,5 +10,3 @@ async function readFileSerially(){
 }
 
 readFileSerially();
-
-
