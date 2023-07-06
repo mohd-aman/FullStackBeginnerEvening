@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+       
+    </div>
+    <!-- first one has core react functionality and concepts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- second one has functionality related to react dom  -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <script>
+        //in html
+        // <h1>Hello World</h1>
+
+        // in DOM(Vanilla JS)
+        // let h1 = document.createElement("h1");
+        // h1.innerText = "Hello Wolrd";
+        // console.log(h1);
+        // let rootElement = document.querySelector("#root");
+        // rootElement.appendChild(h1);
+        
+        //in react 
+        let h1 = React.createElement("h1",{id:"one",className:"greeting"},"Hello World");
+       
+        //jsx 
+        // const element = <h1 className="greeting">Hello, world!</h1>;
+
+        let h2 = React.createElement("h2",{className:"questoin",id:"two"},"How are you")
+    //     <div class="parent">
+    //        <h1 class="greeting" id="one">Hello world</h1>
+    //        <h2 class="question" id="two">How are you</h2>
+    //    </div>
+        let div = React.createElement("div",{className:"parent"},[h1,h2])
+        
+
+        let root = ReactDOM.createRoot(document.querySelector("#root"));
+
+        root.render(div);
+
+    </script>
+    
+</body>
+</html>
