@@ -4,6 +4,9 @@ import Header  from './components/Header';
 import MyComponent from './components/MyComponent';
 import UserProfile from './components/UserProfile';
 import Counter from './components/Counter';
+import Product from './components/Product';
+import Form from './components/Form';
+import Ue from './components/Ue';
 
 export default function App() {
   return (
@@ -18,7 +21,7 @@ export default function App() {
     // </div>
 
     <>
-      <Header/>
+      {/* <Header/>
       <Counter/>
       <UserProfile name="Alex" age="30" occupation="Instructor"/>
       <Counter/>
@@ -28,7 +31,12 @@ export default function App() {
       <UserProfile name="Aman" age='50' occupation="NO idea"/>
       <UserProfile name="Stokes" age="30" occupation="Cricketer"/>
       <MyComponent/>
-      <Footer obj={{name:"IMDB Clone", copyright:"Illegal to use"}}/>
+      <Footer obj={{name:"IMDB Clone", copyright:"Illegal to use"}}/> */}
+      {/* <Product/> */}
+      {/* <Form/> */}
+      {/* <Ue/> */}
+      <Counter/>
+
     </>
     
     // <h1>Hello, world!</h1>
