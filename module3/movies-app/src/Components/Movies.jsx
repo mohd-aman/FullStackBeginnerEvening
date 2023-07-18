@@ -14,9 +14,17 @@ function Movies(){
         // watchList.push(movieId); // it will not work since the reference is same
 
         let newWatchList = [...watchList,movieId];
+        localStorage.setItem("movieApp",JSON.stringify(newWatchList));
         setWatchList(newWatchList);
     }
-    
+
+    let handleRemoveFromWatchList = (movieId)=>{
+        let filteredWatchList = watchList.filter((id)=>{
+            return id != movieId;
+        })
+        localStorage.setItem("movieApp",JSON.stringify(filteredWatchList));
+        setWatchList(filteredWatchList);
+    }
 
     console.log(watchList);
     let handlePrev = ()=>{
@@ -37,7 +45,10 @@ function Movies(){
     })
     },[pageNo])
 
-    
+    useEffect(()=>{
+        let moviesFromLocalStorage = localStorage.getItem("movieApp");
+        setWatchList(JSON.parse(moviesFromLocalStorage));
+    },[])
 
     return(
         <div className="p-5">
@@ -52,7 +63,8 @@ function Movies(){
                                     name={movieObj.title} 
                                     poster_path={movieObj.poster_path}
                                     watchList = { watchList}
-                                    handleAddToWatchList = {handleAddToWatchList}/>
+                                    handleAddToWatchList = {handleAddToWatchList}
+                                    handleRemoveFromWatchList = {handleRemoveFromWatchList}/>
                 })}
             </div>
             <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev}/>
