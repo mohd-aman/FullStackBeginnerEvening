@@ -7,6 +7,7 @@ import Counter from './components/Counter';
 import Product from './components/Product';
 import Form from './components/Form';
 import Ue from './components/Ue';
+import Question from './components/Question';
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
       {/* <Form/> */}
       {/* <Ue/> */}
       <Counter/>
+      <Question/>
 
     </>
     

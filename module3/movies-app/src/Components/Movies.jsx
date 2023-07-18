@@ -6,7 +6,19 @@ import Pagination from "./Pagination";
 function Movies(){
     let [movies,setMovies] = useState([]);
     let [pageNo,setPageNo] = useState(1);
+    let [watchList,setWatchList] = useState([]);
 
+    let handleAddToWatchList = (movieId)=>{
+        // console.log("Inside add to watchlist");
+        // console.log(movieId);
+        // watchList.push(movieId); // it will not work since the reference is same
+
+        let newWatchList = [...watchList,movieId];
+        setWatchList(newWatchList);
+    }
+    
+
+    console.log(watchList);
     let handlePrev = ()=>{
         if(pageNo>1)
             setPageNo(pageNo-1)
@@ -35,7 +47,12 @@ function Movies(){
             <div className="flex flex-wrap justify-around gap-8">
                 {movies.map((movieObj)=>{
                     // console.log(movieObj);
-                    return <MovieCard key={movieObj.id} name={movieObj.title} poster_path={movieObj.poster_path}/>
+                    return <MovieCard key={movieObj.id}
+                                    id={movieObj.id}
+                                    name={movieObj.title} 
+                                    poster_path={movieObj.poster_path}
+                                    watchList = { watchList}
+                                    handleAddToWatchList = {handleAddToWatchList}/>
                 })}
             </div>
             <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev}/>
