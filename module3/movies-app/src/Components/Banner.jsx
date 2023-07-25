@@ -5,7 +5,7 @@ function Banner(){
     let [detail,setDetail] = useState({})
 
     useEffect(()=>{
-        axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=7a14990db2f038e12eadc4125fe96763')
+        axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=2816c138913c6ef73d40c883d36fbe56')
         .then(function(res){
             // console.log(res);
             

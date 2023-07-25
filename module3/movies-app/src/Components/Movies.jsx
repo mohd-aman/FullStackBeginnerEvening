@@ -37,7 +37,7 @@ function Movies(){
     }
 
     useEffect(()=>{
-        axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=7a14990db2f038e12eadc4125fe96763&page=${pageNo}`)
+        axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=2816c138913c6ef73d40c883d36fbe56&page=${pageNo}`)
         .then(function(res){
         // console.log(res);
         // console.log(res.data.results);
