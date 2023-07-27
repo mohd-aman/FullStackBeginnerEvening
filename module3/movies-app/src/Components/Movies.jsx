@@ -3,28 +3,10 @@ import axios from "axios"
 import {useEffect, useState} from "react"
 import Pagination from "./Pagination";
 
-function Movies(){
+function Movies(props){
+    let {watchList,setWatchList,handleAddToWatchList,handleRemoveFromWatchList} = props;
     let [movies,setMovies] = useState([]);
     let [pageNo,setPageNo] = useState(1);
-    let [watchList,setWatchList] = useState([]);
-
-    let handleAddToWatchList = (movieId)=>{
-        // console.log("Inside add to watchlist");
-        // console.log(movieId);
-        // watchList.push(movieId); // it will not work since the reference is same
-
-        let newWatchList = [...watchList,movieId];
-        localStorage.setItem("movieApp",JSON.stringify(newWatchList));
-        setWatchList(newWatchList);
-    }
-
-    let handleRemoveFromWatchList = (movieId)=>{
-        let filteredWatchList = watchList.filter((id)=>{
-            return id != movieId;
-        })
-        localStorage.setItem("movieApp",JSON.stringify(filteredWatchList));
-        setWatchList(filteredWatchList);
-    }
 
     console.log(watchList);
     let handlePrev = ()=>{
@@ -47,6 +29,9 @@ function Movies(){
 
     useEffect(()=>{
         let moviesFromLocalStorage = localStorage.getItem("movieApp");
+        if(!moviesFromLocalStorage){
+            return;
+        }
         setWatchList(JSON.parse(moviesFromLocalStorage));
     },[])
 
@@ -59,7 +44,7 @@ function Movies(){
                 {movies.map((movieObj)=>{
                     // console.log(movieObj);
                     return <MovieCard key={movieObj.id}
-                                    id={movieObj.id}
+                                    movieObj={movieObj}
                                     name={movieObj.title} 
                                     poster_path={movieObj.poster_path}
                                     watchList = { watchList}

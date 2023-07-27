@@ -1,6 +1,16 @@
 
 export default function MovieCard(props){
-    let {id,handleAddToWatchList,handleRemoveFromWatchList,name,watchList,poster_path} = props;
+    let {movieObj,handleAddToWatchList,handleRemoveFromWatchList,name,watchList,poster_path} = props;
+
+    function isContain(movieObj){
+        for(let i=0;i<watchList.length;i++){
+            if(watchList[i].id == movieObj.id){
+                return true;
+            }
+        }
+        return false;
+    }
+
     return(
         <div className="h-[40vh] w-[200px] bg-center bg-cover 
         rounded-xl hover:scale-110 duration-300 hover:cursor-pointer
@@ -8,13 +18,13 @@ export default function MovieCard(props){
         style={{
                backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
        }}>
-           {watchList.includes(id)?
-            <div onClick={()=>handleRemoveFromWatchList(id)} className="m-4 bg-gray-900
+           {isContain(movieObj)?
+            <div onClick={()=>handleRemoveFromWatchList(movieObj)} className="m-4 bg-gray-900
                             flex justify-center items-center 
                             h-8 w-8 rounded-lg">
                     &#10060;
                 </div>
-           :<div onClick={()=>handleAddToWatchList(id)}
+           :<div onClick={()=>handleAddToWatchList(movieObj)}
             className="m-4 bg-gray-900
                         flex justify-center items-center 
                         h-8 w-8 rounded-lg">
