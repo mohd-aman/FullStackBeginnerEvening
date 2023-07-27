@@ -5,11 +5,22 @@ import WatchList from './Components/WatchList';
 import Navbar from './Components/Navbar';
 import Banner from './Components/Banner';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {useState} from "react"
+import {useState,useEffect} from "react"
 
 
 function App() {
   let [watchList,setWatchList] = useState([]);
+  let [pageNo,setPageNo] = useState(1);
+
+    
+    let handlePrev = ()=>{
+        if(pageNo>1)
+            setPageNo(pageNo-1)
+    }
+
+    let handleNext = ()=>{
+        setPageNo(pageNo+1);
+    }
 
   let handleAddToWatchList = (movieObj)=>{
       // console.log("Inside add to watchlist");
@@ -29,6 +40,13 @@ function App() {
       setWatchList(filteredWatchList);
   }
 
+  useEffect(()=>{
+    let moviesFromLocalStorage = localStorage.getItem("movieApp");
+    if(!moviesFromLocalStorage){
+        return;
+    }
+    setWatchList(JSON.parse(moviesFromLocalStorage));
+},[])
 
 
 
@@ -43,12 +61,16 @@ function App() {
             <Movies watchList={watchList}
                     setWatchList={setWatchList}
                     handleAddToWatchList={handleAddToWatchList}
-                    handleRemoveFromWatchList={handleRemoveFromWatchList}/>
+                    handleRemoveFromWatchList={handleRemoveFromWatchList}
+                    pageNo={pageNo}
+                    handleNext={handleNext}
+                    handlePrev={handlePrev}/>
           </>
         }></Route>
         
         <Route path='/watchlist' element={
           <WatchList watchList={watchList}
+                    setWatchList={setWatchList}
                       handleRemoveFromWatchList={handleRemoveFromWatchList}/>
         }
         ></Route>

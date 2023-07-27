@@ -1,38 +1,55 @@
+import { useEffect, useState } from "react";
+import genreids from "../Utility/genre";
 
 function WatchList(props){
-  let {watchList,handleRemoveFromWatchList} = props;
+  let {watchList,handleRemoveFromWatchList,setWatchList} = props;
+  let [genreList,setGenreList] = useState(["All Genres"]);
+  let [currGenre,setCurrGenre] = useState("All Genres");
+  let [search,setSearch] = useState("");
 
-  const genreids = {
-    28: "Action",
-    12: "Adventure",
-    16: "Animation",
-    35: "Comedy",
-    80: "Crime",
-    99: "Documentary",
-    18: "Drama",
-    10751: "Family",
-    14: "Fantasy",
-    36: "History",
-    27: "Horror",
-    10402: "Music",
-    9648: "Mystery",
-    10749: "Romance",
-    878: "Sci-Fi",
-    10770: "TV",
-    53: "Thriller",
-    10752: "War",
-    37: "Western",
-  };
+  let hanldeFilter = (genre)=>{
+    setCurrGenre(genre)
+  }
 
-    return(
+  let handleSearch = (e)=>{
+    setSearch(e.target.value);
+  }
+
+  let sortIncreasing = ()=>{
+    let sorted = watchList.sort((movieA,movieB)=>{
+      return movieA.vote_average-movieB.vote_average
+    })
+    setWatchList([...sorted]);
+  }
+
+  let sortDecreasing = ()=>{
+    let sorted = watchList.sort((movieA,movieB)=>{
+      return movieB.vote_average-movieA.vote_average
+    })
+    setWatchList([...sorted]);
+  }
+
+    useEffect(()=>{
+      let temp = watchList.map((movieObj)=>{
+        return genreids[movieObj.genre_ids[0]];
+      })
+      temp = new Set(temp);
+      setGenreList(["All Genres",...temp]);
+    },[watchList])
+
+    return( 
         <>
-        <div className="flex justify-center">
-            <div className="flex justify-center items-center w-[15rem] h-[3rem] bg-blue-400 rounded-xl text-white">All Genres</div>
+        <div className="flex justify-center flex-wrap m-4">
+            {genreList.map((genre)=>{
+              return <div key={genre} onClick={()=>hanldeFilter(genre)} className={
+                currGenre == genre?"hover:cursor-pointer flex justify-center items-center w-[9rem] h-[3rem] rounded-xl bg-blue-400 m-4 text-white font-bold "
+              :"hover:cursor-pointer flex justify-center items-center w-[9rem] h-[3rem] rounded-xl bg-gray-400/50 m-4 text-white font-bold "}>{genre}</div>
+            })}
          </div>
 
 
          <div className="flex justify-center my-4">
-            <input className="h-[3rem] w-[18rem]
+            <input onChange={handleSearch} value={search} className="h-[3rem] w-[18rem]
              border-none outline-none bg-gray-200
              px-4 text-lg " type="text" placeholder="Search for Movies" />
         </div>
@@ -44,9 +61,9 @@ function WatchList(props){
                     <tr>
                         <th>Name</th>
                         <th className="flex">
-                            <div className="p-2"><i class="fa-solid fa-arrow-up"></i></div>
+                            <div onClick={sortIncreasing} className="p-2"><i class="fa-solid fa-arrow-up"></i></div>
                            <div className="p-2">Ratings</div>
-                           <div className="p-2"><i class="fa-solid fa-arrow-down"></i></div> 
+                           <div onClick={sortDecreasing} className="p-2"><i class="fa-solid fa-arrow-down"></i></div> 
                         </th>
                         <th>Popularity</th>
                         <th>Genre</th>
@@ -54,7 +71,17 @@ function WatchList(props){
                     </tr>
                 </thead>
                 <tbody className="text-gray-700">
-                {watchList.map((movieObj)=>{
+                {watchList.filter((obj)=>{
+                  if(currGenre == "All Genres"){
+                    return true;
+                  }else{
+                    return genreids[obj.genre_ids[0]] == currGenre;
+                  }
+                })
+                .filter((movieObj)=>{
+                  return movieObj.title.toLowerCase().includes(search.toLocaleLowerCase());
+                })
+                .map((movieObj)=>{
                     return   <tr className="border-b-2">
                         <td className="flex items-center px-6 py-4">
                             <img className="h-[6rem] w-[10rem]" src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`} alt="" />
