@@ -61,9 +61,9 @@ function WatchList(props){
                     <tr>
                         <th>Name</th>
                         <th className="flex">
-                            <div onClick={sortIncreasing} className="p-2"><i class="fa-solid fa-arrow-up"></i></div>
+                            <div onClick={sortIncreasing} className="p-2"><i className="fa-solid fa-arrow-up"></i></div>
                            <div className="p-2">Ratings</div>
-                           <div onClick={sortDecreasing} className="p-2"><i class="fa-solid fa-arrow-down"></i></div> 
+                           <div onClick={sortDecreasing} className="p-2"><i className="fa-solid fa-arrow-down"></i></div> 
                         </th>
                         <th>Popularity</th>
                         <th>Genre</th>
