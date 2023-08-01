@@ -2,6 +2,8 @@ import Family from './prop_drill/Family';
 import FamilyC from "./ContextComponents/FamilyC"
 import './App.css';
 import { FamilyContext } from './ContextComponents/FamilyContext';
+import Ref from './Ref';
+import Factorial from './Factorial';
 
 function App() {
 
@@ -19,9 +21,11 @@ function App() {
 
   return (
     // <Family/>
-    <FamilyContext.Provider value={familyInfo}>
-      <FamilyC/>
-    </FamilyContext.Provider>
+    // <FamilyContext.Provider value={familyInfo}>
+    //   <FamilyC/>
+    // </FamilyContext.Provider>
+    // <Ref/>
+    <Factorial/>
   );
 }
 
