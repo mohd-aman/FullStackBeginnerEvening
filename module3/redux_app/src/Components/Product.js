@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import {useDispatch} from "react-redux"
+import {add} from "../Store/cartSlice"
 
 export default function Product(){
     let [products,setProducts] = useState([]);
+    
+    let dispatch = useDispatch();
+
+    let handleAdd = (product)=>{
+        dispatch(add(product))    
+    }
+
     useEffect(()=>{
         axios.get("https://fakestoreapi.com/products")
         .then((res)=>{
@@ -13,12 +22,12 @@ export default function Product(){
 
     return(
         <div className="productsWrapper">
-            {products.map((item)=>{
-                return <div key={item.id} className="card">
-                            <img src={item.image}/>
-                            <h6>{item.title}</h6>
-                            <h5>{item.price}$</h5>
-                            <button className="btn">Add to Cart</button>
+            {products.map((product)=>{
+                return <div key={product.id} className="card">
+                            <img src={product.image}/>
+                            <h6>{product.title}</h6>
+                            <h5>{product.price}$</h5>
+                            <button onClick={()=>handleAdd(product)} className="btn">Add to Cart</button>
                         </div>
             })}
 
