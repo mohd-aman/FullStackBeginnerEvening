@@ -1,6 +1,9 @@
+import Product from "../Components/Product";
 
 export default function Home(){
     return(
-        <div>I am Home</div>
+        <div>
+            <Product/>
+        </div>
     )
 }
