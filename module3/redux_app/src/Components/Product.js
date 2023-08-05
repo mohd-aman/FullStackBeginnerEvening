@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {add} from "../Store/cartSlice"
+import { fetchProducts } from "../Store/productSlice";
 
 export default function Product(){
-    let [products,setProducts] = useState([]);
+    let {data,status} = useSelector((state)=>state.products);
     
     let dispatch = useDispatch();
 
@@ -13,16 +14,15 @@ export default function Product(){
     }
 
     useEffect(()=>{
-        axios.get("https://fakestoreapi.com/products")
-        .then((res)=>{
-            // console.log(res);
-            setProducts(res.data);
-        })
+        const getProducts = async ()=>{
+            dispatch(fetchProducts());
+        }
+        getProducts();
     },[])
 
     return(
         <div className="productsWrapper">
-            {products.map((product)=>{
+            {data.map((product)=>{
                 return <div key={product.id} className="card">
                             <img src={product.image}/>
                             <h6>{product.title}</h6>
