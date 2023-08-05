@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
 import {add} from "../Store/cartSlice"
-import { fetchProducts } from "../Store/productSlice";
+import { fetchProducts, STATUSES } from "../Store/productSlice";
 
 export default function Product(){
     let {data,status} = useSelector((state)=>state.products);
@@ -19,6 +19,14 @@ export default function Product(){
         }
         getProducts();
     },[])
+
+    if(status == STATUSES.LOADING){
+        return <h1>...Loading</h1>
+    }
+
+    if(status == STATUSES.ERROR){
+        return <h1>Something Went Wrong</h1>
+    }
 
     return(
         <div className="productsWrapper">
