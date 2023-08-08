@@ -38,7 +38,7 @@ const Todo = () => {
   const deleteTask = (id) => {
     console.log(`Task with ${id} to remove!`)
     const filteredTask = list.filter((task) => task.id !== id);
-    setList([...filteredTask]);
+    setList(filteredTask);
   }
 
   return (
@@ -46,7 +46,8 @@ const Todo = () => {
       <div>
         <h1>My TodoList</h1>
         <div>
-          I want to do <input type="text" name="title" onChange={handleTask}/> by{" "}
+          I want to do
+          <input type="text" name="title" onChange={handleTask}/> by{" "}
           <input type="date" name="by" onChange={handleTask} />
           <button className="wishBtn" onClick={addTask}>Add a Task</button>
         </div>
