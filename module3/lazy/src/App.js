@@ -3,6 +3,7 @@ import {lazy, Suspense, useState} from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
+import HOC from "./Components/CompA";
 import Navbar from "./Components/Navbar";
 // import About from "./Pages/About";
 import Home from "./Pages/Home";
@@ -33,17 +34,22 @@ function App() {
     //     return <div key={item.id}>{item.name}</div>
     //   })}
     // </div>
-    <Suspense fallback={<h2>...Loading</h2>}>
-      <BrowserRouter>
-      <Navbar/>
-      <Routes>
-          <Route path="/" element={<Home/>}></Route>
-          <Route path="/products" element={<Products/>}></Route>
-          <Route path="/testimonials" element={<Testimonial/>}></Route>
-          <Route path="/about" element={<About/>}></Route>
-      </Routes>
-    </BrowserRouter>
-    </Suspense>
+    // <Suspense fallback={<h2>...Loading</h2>}>
+    //   <BrowserRouter>
+    //   <Navbar/>
+    //   <Routes>
+    //       <Route path="/" element={<Home/>}></Route>
+    //       <Route path="/products" element={<Products/>}></Route>
+    //       <Route path="/testimonials" element={<Testimonial/>}></Route>
+    //       <Route path="/about" element={<About/>}></Route>
+    //   </Routes>
+    // </BrowserRouter>
+    // </Suspense>
+    
+    <>
+      <HOC dark/>
+      <HOC yellow/>
+    </>
     
     
   );
