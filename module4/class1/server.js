@@ -10,8 +10,8 @@ const server = http.createServer((req,res)=>{
     // console.log(res);
     // res.end("Hello world")
     // res.end("<h1>Hello World</h1>");
-    res.setHeader("Content-Type","application/json");
+    // res.setHeader("Content-Type","application/json");
     res.end(JSON.stringify(data))
 })
 
-server.listen(8080);
+server.listen(8082);
