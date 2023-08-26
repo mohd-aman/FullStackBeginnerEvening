@@ -37,8 +37,27 @@ app.post("/products",(req,res)=>{
     res.send("data added");
 })
 
-//Delete 
 
+//Update
+
+app.put("/products/:id",(req,res)=>{
+    let id = req.params.id;
+    let productIndex = products.findIndex(obj => obj.id == id);
+    // products.splice(productIndex,1,{id:id, ...req.body})
+    products[productIndex] = {id:id, ...req.body};
+    // [{id:1,title:"kjfdlasj"},{id:2,title:"jfkd"},{id:4,title:"jkfd"}]
+    res.send("data updated with put method");
+})
+
+app.patch("/products/:id",(req,res)=>{
+    let id = req.params.id;
+    let productIndex = products.findIndex(obj => obj.id == id);
+    let product = products[productIndex];
+    products.splice(productIndex,1,{...product,...req.body})
+    res.send("data updated with patch method")
+})
+
+//Delete 
 app.delete("/products/:id",(req,res)=>{
     let id = req.params.id;
     let productIndex = products.findIndex(obj => obj.id == id)
