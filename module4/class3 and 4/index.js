@@ -37,3 +37,34 @@ async function createCourse(){
 }
 
 // createCourse();
+
+async function getCourse(){
+    // const allCourses = await Course.find({});
+    // console.log(allCourses);
+    // const course = await Course.find({creator:"Joe"});
+    // const course = await Course.find({rating:{$lt:4}})
+    // console.log(course);
+}
+
+// getCourse();
+
+
+async function updateCourse(id){
+    const courseToUpdate = await Course.findById(id);
+    console.log(courseToUpdate);
+    if(!courseToUpdate){
+        return;
+    }
+    courseToUpdate.name = "C++";
+    courseToUpdate.creator = "Carey"
+    const updatedCourse = await courseToUpdate.save();
+}
+
+// updateCourse("64ee2355832c88096e6d83b8");
+
+async function deleteCourse(id){
+   const deletedCourse =  await Course.findByIdAndDelete(id)
+   console.log(deletedCourse)
+}
+
+// deleteCourse("64ee2379db2f85454465d82d");
