@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 router.post('/register',async (req,res)=>{
     try{
@@ -46,12 +48,24 @@ router.post('/login',async (req,res)=>{
             message:"Invalid Passowrd"
         })
     }
+    const token = jwt.sign({userId:user._id},process.env.secret_key_jwt,{expiresIn:'1d'});
+    // console.log(token);
     res.send({
         success:true,
-        message:"User Logged In"
+        message:"User Logged In",
+        token:token
     })
 
 })
 
+
+router.get("/get-current-user", authMiddleware, async (req,res)=>{
+    const user = await User.findById(req.body.userId).select('-password')
+    res.send({
+        success:true,
+        message:"You are allowed to go to protected route",
+        data:user
+    })
+})
 
 module.exports = router;

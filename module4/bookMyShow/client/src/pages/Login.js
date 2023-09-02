@@ -1,18 +1,21 @@
 import React from 'react'
 import {Form,message} from "antd";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { LoginUser } from '../apicalls/users';
 
 
 const Login = () => {
+  const navigate = useNavigate();
   const onFinish = async (value)=>{
     // console.log("Form submitted",value);
     try{
       const res = await LoginUser(value)
       if(res.success){
         message.success(res.message);
+        localStorage.setItem('token',res.token);
+        navigate('/')
       }else{
         message.error(res.message);
       }
