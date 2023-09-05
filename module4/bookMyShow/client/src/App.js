@@ -11,6 +11,8 @@ import './stylesheets/form-elements.css'
 import './stylesheets/theme.css'
 import './stylesheets/custom.css'
 import ProtectedRoute from './components/ProtectedRoute';
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin"
 
 function App() {
   return (
@@ -21,6 +23,16 @@ function App() {
         <Route path='/' element={
                        <ProtectedRoute>
                          <Home/>
+                       </ProtectedRoute> 
+        }/>
+        <Route path='/admin' element={
+                       <ProtectedRoute>
+                         <Admin/>
+                       </ProtectedRoute> 
+        }/>
+        <Route path='/profile' element={
+                       <ProtectedRoute>
+                         <Profile/>
                        </ProtectedRoute> 
         }/>
         <Route path='/login' element={<Login/>}/>
