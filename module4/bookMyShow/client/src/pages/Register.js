@@ -1,11 +1,12 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Button from "../components/Button"
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { Form,message } from 'antd'
 import { RegisterUser } from '../apicalls/users'
 
 const Register = () => {
+  const navigate = useNavigate();
   const onFinish = async (value)=>{
     // console.log("Form submitted",value);
     try{
@@ -20,6 +21,12 @@ const Register = () => {
     }
     
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  },[])
     return (
         <div className="flex justify-center h-screen items-center bg-primary">
         <div className="card p-3 w-400">
