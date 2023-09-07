@@ -20,5 +20,71 @@ router.post('/add-theatre',authMiddleware,async(req,res)=>{
 })
 
 
+//get theatre owner specific
+router.post('/get-all-theatre-by-owner', authMiddleware,async (req,res)=>{
+    try{
+        const theatres = await Theatre.find({owner:req.body.owner})
+        res.send({
+            success:true,
+            message:"Theatre added",
+            data:theatres
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+//update theatre 
+
+router.put("/update-theatre",authMiddleware ,async(req,res)=>{
+    try{
+        await Theatre.findByIdAndUpdate(req.body.theatreId,req.body);
+        res.send({
+            success:true,
+            message:"Theatre updated"
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+//delete a theatre
+router.post('/delete-theatre', authMiddleware,async (req,res)=>{
+    try{
+        await Theatre.findByIdAndDelete(req.body.theatreId)
+        res.send({
+            success:true,
+            message:"Theatre Deleted"
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+//get all theatre route
+router.get('/get-all-theatres',authMiddleware, async(req,res)=>{
+    try{
+        const theatres = await Theatre.find().populate('owner');
+        res.send({
+            success:true,
+            message:"Theatres fetched",
+            data:theatres
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
 
 module.exports = router;

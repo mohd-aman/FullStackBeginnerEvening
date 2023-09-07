@@ -56,7 +56,7 @@ router.put('/update-movie', authMiddleware ,async (req,res)=>{
 
 //delete a movie
 
-router.put('/delete-movie',authMiddleware,async (req,res)=>{
+router.post('/delete-movie',authMiddleware,async (req,res)=>{
     try{
         await Movie.findByIdAndDelete(req.body.movieId);
         res.send({
