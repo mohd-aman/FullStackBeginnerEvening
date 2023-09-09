@@ -54,3 +54,21 @@ export const AddShow = async (payload)=>{
         return err.response;
     }
 }
+
+export const GetAllShowsByTheatre = async (payload)=>{
+    try{
+        const response = await axiosInstance.post('/api/theatres/get-all-shows-by-theatre',payload);
+        return response.data;
+    }catch(err){
+        return err.response;
+    }
+}
+
+export const DeleteShow = async (payload)=>{
+    try{
+        const response = await axiosInstance.post('/api/theatres/delete-show',payload)
+        return response.data;
+    }catch(err){
+        return err.response;
+    }
+}
