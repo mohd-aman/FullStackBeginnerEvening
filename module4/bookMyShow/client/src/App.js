@@ -13,6 +13,7 @@ import './stylesheets/custom.css'
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin"
+import TheatreForMovie from './pages/TheatreForMovie';
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
                          <Home/>
                        </ProtectedRoute> 
         }/>
+        <Route path='/movie/:id' element={
+                <ProtectedRoute>
+                  <TheatreForMovie/>
+                </ProtectedRoute>
+        }
+        />
         <Route path='/admin' element={
                        <ProtectedRoute>
                          <Admin/>

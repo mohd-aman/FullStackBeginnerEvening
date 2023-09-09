@@ -38,6 +38,24 @@ router.get('/get-all-movies', authMiddleware ,async(req,res)=>{
     }
 })
 
+//get a movie by id
+router.get('/get-movie-by-id/:id',authMiddleware,async(req,res)=>{
+    try{
+        const movie = await Movie.findById(req.params.id);
+        res.send({
+            success:true,
+            message:"Movie Fetched",
+            data:movie
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+
 //update a movie
 router.put('/update-movie', authMiddleware ,async (req,res)=>{
     try{
