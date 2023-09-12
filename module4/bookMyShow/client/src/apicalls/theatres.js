@@ -72,3 +72,12 @@ export const DeleteShow = async (payload)=>{
         return err.response;
     }
 }
+
+export const GetTheatresByMovie = async(payload)=>{
+    try{
+        const response = await axiosInstance.post('/api/theatres/get-all-theatres-by-movie',payload);
+        return response.data;
+    }catch(err){
+        return err.response
+    }
+}
