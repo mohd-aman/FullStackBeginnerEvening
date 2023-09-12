@@ -33,7 +33,7 @@ export default function Home(){
     useEffect(()=>{
         getData();
     },[])
-    return (
+    return (movies.length>0 && 
         <div>
          <input type='text' placeholder='Search For Currenty Showing Movies' 
          className='search-input' onChange={(e)=> setSearchText(e.target.value)}/>

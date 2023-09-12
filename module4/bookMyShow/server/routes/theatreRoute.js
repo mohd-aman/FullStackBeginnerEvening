@@ -166,8 +166,28 @@ router.post('/get-all-theatres-by-movie',authMiddleware,async(req,res)=>{
         })
         res.send({
             success:true,
-            message:"Success",
+            message:"Unique Data Fetched",
             data:uniqueTheatre
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+
+//get show by id
+router.post('/get-show-by-id',authMiddleware,async(req,res)=>{
+    try{
+        const show = await Show.findById(req.body.showId)
+        .populate("movie")
+        .populate("theatre")
+        res.send({
+            success:true,
+            message:"Show fetched",
+            data:show,
         })
     }catch(err){
         res.send({

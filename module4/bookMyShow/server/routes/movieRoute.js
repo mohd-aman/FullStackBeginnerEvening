@@ -57,7 +57,7 @@ router.get('/get-movie-by-id/:id',authMiddleware,async(req,res)=>{
 
 
 //update a movie
-router.put('/update-movie', authMiddleware ,async (req,res)=>{
+router.post('/update-movie', authMiddleware ,async (req,res)=>{
     try{
         await Movie.findByIdAndUpdate(req.body.movieId,req.body);
         res.send({

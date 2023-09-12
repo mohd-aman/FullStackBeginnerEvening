@@ -14,10 +14,20 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin"
 import TheatreForMovie from './pages/TheatreForMovie';
+import BookShow from './pages/BookShow';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const {loading} = useSelector((state)=>state.loaders);
   return (
-    <BrowserRouter>
+    
+    <div>
+  {loading && (
+        <div className="loader-parent">
+          <div className="loader"></div>
+        </div>
+      )}
+<BrowserRouter>
        
        <Routes>
         
@@ -29,6 +39,12 @@ function App() {
         <Route path='/movie/:id' element={
                 <ProtectedRoute>
                   <TheatreForMovie/>
+                </ProtectedRoute>
+        }
+        />
+        <Route path='/book-show/:id' element={
+                <ProtectedRoute>
+                  <BookShow/>
                 </ProtectedRoute>
         }
         />
@@ -47,6 +63,8 @@ function App() {
 
        </Routes>
        </BrowserRouter>
+    </div>
+    
   );
 }
 
