@@ -1,20 +1,21 @@
 import { message } from "antd";
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GetShowById } from "../apicalls/theatres";
-import { MakePayment } from "../apicalls/bookings";
+import {BookShowTickets, MakePayment } from "../apicalls/bookings";
 import Button from "../components/Button";
 import { HideLoading, ShowLoading } from "../redux/loadersSlice";
 import StripeCheckout from "react-stripe-checkout";
 import moment from "moment"
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function BookShow(){
+  const { user } = useSelector((state) => state.users);
    const [selectedSeats, setSelectedSeats] = useState([]);
     let [show,setShow] = useState();
     const params = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const getData = async()=>{
         try{
             const response = await GetShowById({showId:params.id})
@@ -89,9 +90,30 @@ export default function BookShow(){
       );
     };
 
-    const onToken = async (token) => {
+    const book = async (transactionId) => {
+      try {
+        dispatch(ShowLoading());
+        const response = await BookShowTickets({
+          show: params.id,
+          seats: selectedSeats,
+          transactionId,
+          user: user._id,
+        });
+        if (response.success) {
+          message.success(response.message);
+          navigate("/profile");
+        } else {
+          message.error(response.message);
+        }
+        dispatch(HideLoading());
+      } catch (error) {
+        message.error(error.message);
+        dispatch(HideLoading());
+      }
+    };
 
-      console.log(token)
+    const onToken = async (token) => {
+      // console.log(token)
       try {
         dispatch(ShowLoading());
         const response = await MakePayment(
@@ -100,8 +122,8 @@ export default function BookShow(){
         );
         if (response.success) {
           message.success(response.message);
-          console.log(response.data);
-          //  book(response.data);
+          // console.log(response.data);
+          book(response.data);
         } else {
           message.error(response.message);
         }
